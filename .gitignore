@@ -1,0 +1,6 @@
+.claude/
+.env
+*.tmp
+.tmp/
+credentials.json
+token.json

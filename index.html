@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conservation Capital — Nature Finance Advisory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ──────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: #111; overflow-x: hidden; }
+
+    /* ── Tokens ─────────────────── */
+    :root {
+      --o:    #F7941D;   /* orange         */
+      --o2:   #D97B08;   /* orange dark    */
+      --o3:   rgba(247,148,29,0.12); /* orange tint  */
+      --k:    #0D0D0D;   /* black          */
+      --k2:   #1A1A1A;   /* dark           */
+      --k3:   #2C2C2C;   /* mid-dark       */
+      --g1:   #F2F2F0;   /* light gray bg  */
+      --g2:   #E0DFDC;   /* border gray    */
+      --g3:   #8A8A87;   /* text gray      */
+      --w:    #FFFFFF;
+    }
+
+    /* ── Type ───────────────────── */
+    .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+    h1, .h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem,6.5vw,6.5rem); font-weight: 600; line-height: 1.02; letter-spacing: -0.02em; }
+    h2, .h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,4rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.015em; }
+    h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem,2.2vw,1.8rem); font-weight: 600; line-height: 1.2; }
+
+    /* ── Util ───────────────────── */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--o); display: block; margin-bottom: 1rem;
+    }
+
+    /* ── Buttons ────────────────── */
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none; cursor: pointer; border: none;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 2rem; transition: all 0.28s cubic-bezier(0.16,1,0.3,1);
+      position: relative; overflow: hidden;
+    }
+    .btn-o { background: var(--o); color: var(--k); }
+    .btn-o::after { content:''; position:absolute; inset:0; background: var(--o2); transform:scaleX(0); transform-origin:left; transition:transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+    .btn-o:hover::after { transform:scaleX(1); }
+    .btn-o span { position:relative; z-index:1; }
+    .btn-o svg { position:relative; z-index:1; transition: transform 0.3s; }
+    .btn-o:hover svg { transform: translateX(4px); }
+
+    .btn-wh { background: transparent; color: var(--w); border: 1px solid rgba(255,255,255,0.4); }
+    .btn-wh:hover { border-color: var(--w); background: rgba(255,255,255,0.08); }
+
+    .btn-bk { background: var(--k); color: var(--w); }
+    .btn-bk:hover { background: var(--k3); }
+
+    .btn-ghost-o { background: transparent; color: var(--o); border: 1px solid var(--o); }
+    .btn-ghost-o:hover { background: var(--o); color: var(--k); }
+
+    /* arrow icon */
+    .arr { width:14px; height:14px; flex-shrink:0; }
+
+    /* ── Reveal ─────────────────── */
+    .rv { opacity:0; transform:translateY(30px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .rv.in { opacity:1; transform:none; }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
+    .d4{transition-delay:.4s} .d5{transition-delay:.5s} .d6{transition-delay:.6s}
+
+    /* ════════════════════════════
+       SPLASH INTRO
+    ════════════════════════════ */
+    #splash {
+      position: fixed; inset: 0; z-index: 2000;
+      background: var(--k);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    #splash.gone { opacity: 0; pointer-events: none; }
+    .splash-logo {
+      width: clamp(240px, 62vw, 860px);
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .splash-logo.show { opacity: 1; transform: scale(1); }
+    .splash-logo.hide { opacity: 0; transform: scale(1.05); transition-duration: 0.6s; }
+
+    /* ════════════════════════════
+       NAV
+    ════════════════════════════ */
+    #nav {
+      position: fixed; top:0; left:0; right:0; z-index:500;
+      background: var(--k2);
+      transition: background 0.3s;
+    }
+    .nav-in {
+      max-width:1280px; margin:0 auto; padding:0 2.5rem;
+      height:64px; display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo img { height:28px; display:block; }
+    .nav-links { display:flex; align-items:center; gap:2.4rem; list-style:none; }
+    .nav-links a {
+      font-size:0.82rem; font-weight:500; letter-spacing:0.05em;
+      text-decoration:none; color:rgba(255,255,255,0.7); transition:color 0.2s;
+    }
+    .nav-links a:hover { color:var(--w); }
+    .nav-right { display:flex; align-items:center; gap:1.2rem; }
+
+    /* Mobile hamburger */
+    .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
+    .ham span { display:block; width:22px; height:2px; background:var(--k); transition:all 0.3s; }
+    .ham.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .ham.open span:nth-child(2) { opacity:0; }
+    .ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    .mob-menu {
+      display:none; position:fixed; top:64px; left:0; right:0; bottom:0;
+      background:var(--k); z-index:499; flex-direction:column;
+      align-items:center; justify-content:center; gap:2rem;
+    }
+    .mob-menu.open { display:flex; }
+    .mob-menu a {
+      font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:600;
+      color:var(--w); text-decoration:none; transition:color 0.2s;
+    }
+    .mob-menu a:hover { color:var(--o); }
+
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Full-bleed photo background */
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: 0;
+      transition: opacity 2.4s ease;
+      animation: heroZoom 24s ease-in-out infinite;
+    }
+    .hero-bg img.hero-reveal { opacity: 1; }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        170deg,
+        rgba(0,0,0,0.70) 0%,
+        rgba(0,0,0,0.42) 50%,
+        rgba(0,0,0,0.68) 100%
+      );
+    }
+    @keyframes heroZoom {
+      0%   { transform: scale(1)    translateX(0)     translateY(0); }
+      33%  { transform: scale(1.05) translateX(-1.5%) translateY(-0.8%); }
+      66%  { transform: scale(1.08) translateX(1%)    translateY(-1.2%); }
+      100% { transform: scale(1.04) translateX(-0.5%) translateY(0.5%); }
+    }
+
+    /* Centered content */
+    .hero-content {
+      position: relative; z-index: 2;
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 2.5rem 3rem;
+      width: 100%; max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--o); margin-bottom: 1.6rem;
+      animation: heroIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+    }
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5.5vw, 6.5rem);
+      font-weight: 600; line-height: 1.0;
+      letter-spacing: 0.02em;
+      color: var(--w); margin-bottom: 2rem;
+      animation: heroIn 1.1s cubic-bezier(0.16,1,0.3,1) 0.35s both;
+    }
+    .hero-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+      font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.62);
+      max-width: 580px; margin-bottom: 3rem;
+      animation: heroIn 1.1s cubic-bezier(0.16,1,0.3,1) 0.55s both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      animation: heroIn 1.1s cubic-bezier(0.16,1,0.3,1) 0.75s both;
+    }
+    @keyframes heroIn {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:none; }
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute; z-index: 2;
+      bottom: 7rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      animation: heroIn 1s cubic-bezier(0.16,1,0.3,1) 1.2s both;
+    }
+    .hero-scroll-txt {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.32);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity:0.4; transform:scaleY(1) translateY(0); }
+      50%     { opacity:1;   transform:scaleY(1.15) translateY(3px); }
+    }
+
+    /* Stats bar pinned at base of hero */
+    .hero-bar {
+      position: relative; z-index: 2;
+      background: var(--o);
+      display: grid; grid-template-columns: repeat(3,1fr);
+    }
+    .hero-bar-stat {
+      padding: 1.4rem 2rem; border-right: 1px solid rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    .hero-bar-stat:last-child { border-right: none; }
+    .hero-bar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--k); line-height: 1;
+      display: block; margin-bottom: 0.25rem;
+    }
+    .hero-bar-lbl {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+    }
+
+    /* ════════════════════════════
+       ABOUT
+    ════════════════════════════ */
+    #about { padding:8rem 0; background:var(--g1); }
+    .about-g {
+      display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;
+    }
+    .about-text .eyebrow { margin-bottom:1.2rem; }
+    .about-text h2 { color:var(--k); margin-bottom:1.5rem; }
+    .about-text h2 em { font-style:italic; color:var(--o); }
+    .about-text p { font-size:0.96rem; line-height:1.85; color:#444; margin-bottom:1rem; }
+    .about-text .btn { margin-top:1.5rem; }
+
+    .about-visual { position:relative; }
+    .about-img {
+      width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center 20%; display:block;
+    }
+    /* Orange corner accent */
+    .about-img-wrap { position:relative; }
+    .about-img-wrap::after {
+      content:''; position:absolute;
+      bottom:-16px; right:-16px; width:50%; height:50%;
+      border-right:3px solid var(--o); border-bottom:3px solid var(--o);
+      pointer-events:none; z-index:0;
+    }
+    .about-caption {
+      position:absolute; bottom:2rem; left:-2rem;
+      background:var(--o); padding:1.2rem 1.6rem;
+      max-width:220px; z-index:2;
+    }
+    .about-caption strong {
+      font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:700;
+      color:var(--k); display:block; line-height:1.2; margin-bottom:0.3rem;
+    }
+    .about-caption span { font-size:0.78rem; color:rgba(0,0,0,0.65); line-height:1.5; }
+
+    /* ════════════════════════════
+       MISSION STATS
+    ════════════════════════════ */
+    #mission { padding:8rem 0; background:var(--k); }
+    .mission-g {
+      display:grid; grid-template-columns:1fr 1.15fr; gap:6rem; align-items:start;
+    }
+    .mission-text h2 { color:var(--w); margin-bottom:1.5rem; }
+    .mission-text h2 em { font-style:italic; color:var(--o); }
+    .mission-text p { font-size:0.95rem; line-height:1.85; color:rgba(255,255,255,0.55); margin-bottom:1rem; }
+    .mission-text p strong { color:rgba(255,255,255,0.85); font-weight:500; }
+    .mission-text .btn { margin-top:2rem; }
+
+    /* Stats 2x2 grid */
+    .stats-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .stat-cell {
+      padding:2.5rem 2.2rem; border-right:1px solid rgba(255,255,255,0.08);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      position:relative; overflow:hidden; cursor:default;
+      transition:background 0.3s;
+    }
+    .stat-cell:hover { background:rgba(247,148,29,0.05); }
+    .stat-cell:nth-child(2n) { border-right:none; }
+    .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom:none; }
+    .stat-cell-num {
+      font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:700;
+      line-height:1; color:var(--o); margin-bottom:0.5rem;
+      display:block;
+    }
+    .stat-cell-title { font-size:0.82rem; font-weight:600; color:var(--w); margin-bottom:0.4rem; }
+    .stat-cell-desc { font-size:0.78rem; color:rgba(255,255,255,0.38); line-height:1.6; }
+    .stat-source {
+      grid-column:1/-1; padding:0.8rem 1.5rem;
+      font-size:0.65rem; color:rgba(255,255,255,0.2);
+      border-top:1px solid rgba(255,255,255,0.08); text-align:right;
+    }
+
+    /* ════════════════════════════
+       APPROACH (orange bg)
+    ════════════════════════════ */
+    #approach { padding:8rem 0; background:var(--o); }
+    #approach .eyebrow { color:var(--k); opacity:0.6; }
+    #approach h2 { color:var(--k); margin-bottom:1rem; }
+    #approach > .wrap > p { font-size:0.96rem; line-height:1.85; color:rgba(0,0,0,0.65); max-width:760px; margin-bottom:3.5rem; }
+
+    /* Tab buttons */
+    .approach-tabs {
+      display:flex; gap:0; margin-bottom:3rem;
+    }
+    .tab-btn {
+      font-family:'DM Sans',sans-serif; font-size:0.78rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; border:none;
+      padding:0.9rem 2rem; background:rgba(0,0,0,0.12); color:rgba(0,0,0,0.55);
+      transition:all 0.25s; border-bottom:2px solid transparent;
+    }
+    .tab-btn.active { background:var(--k); color:var(--w); border-bottom-color:var(--k); }
+    .tab-btn:hover:not(.active) { background:rgba(0,0,0,0.2); color:var(--k); }
+
+    .tab-panel { display:none; }
+    .tab-panel.active {
+      display:grid; grid-template-columns:1fr 1fr; gap:3rem;
+      animation: panelReveal 0.5s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .prop-card {
+      background:var(--k); padding:2.5rem; border-top:3px solid transparent;
+      transition:border-color 0.3s;
+    }
+    .prop-card:hover { border-top-color:var(--o); }
+    .prop-card h3 { color:var(--w); font-size:1.3rem; margin-bottom:1rem; }
+    .prop-card p { font-size:0.88rem; line-height:1.8; color:rgba(255,255,255,0.55); }
+    .prop-card ul {
+      list-style:none; margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;
+    }
+    .prop-card ul li {
+      font-size:0.85rem; color:rgba(255,255,255,0.6);
+      display:flex; align-items:flex-start; gap:0.6rem;
+    }
+    .prop-card ul li::before { content:'→'; color:var(--o); flex-shrink:0; }
+
+    /* ════════════════════════════
+       SERVICES INTRO
+    ════════════════════════════ */
+    #services { padding: 8rem 0; background: var(--w); }
+    .services-intro { max-width: 960px; }
+    .services-intro h2 { color: var(--k); margin-bottom: 1.8rem; }
+    .services-intro-lead { font-size: 0.96rem; line-height: 1.9; color: #444; max-width: 780px; margin-top: 2rem; }
+
+    .services-nfa-box {
+      margin-top: 3rem;
+      background: var(--k);
+      border-left: 3px solid var(--o);
+      padding: 2.8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      align-items: center;
+    }
+    .services-nfa-text {
+      padding-right: 3.5rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .services-nfa-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--o);
+      display: block; margin-bottom: 1rem;
+    }
+    .services-nfa-text p {
+      font-size: 0.97rem; line-height: 1.9;
+      color: rgba(255,255,255,0.6);
+    }
+    .services-nfa-text p strong { color: var(--w); font-weight: 600; }
+    .services-nfa-stats {
+      display: flex; flex-direction: column; gap: 2rem;
+      padding-left: 3.5rem; flex-shrink: 0;
+    }
+    .services-nfa-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--o); line-height: 1; display: block;
+    }
+    .services-nfa-stat-lbl {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.32);
+      display: block; margin-top: 0.3rem;
+    }
+    @media (max-width: 768px) {
+      .services-nfa-box { grid-template-columns: 1fr; padding: 2rem; }
+      .services-nfa-text { padding-right: 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 2rem; }
+      .services-nfa-stats { padding-left: 0; padding-top: 2rem; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+    }
+
+    /* ════════════════════════════
+       NFA PROCESS
+    ════════════════════════════ */
+    #nfa { padding:8rem 0; background:var(--k2); }
+    .nfa-head { max-width:780px; margin-bottom:4rem; }
+    .nfa-head .eyebrow { color:var(--o); opacity:1; }
+    .nfa-head h2 { color:var(--w); margin-bottom:0.6rem; }
+    .nfa-subtitle {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.1rem,1.8vw,1.4rem); font-weight:300; font-style:italic;
+      color:var(--o); display:block; margin-bottom:1.2rem;
+    }
+    .nfa-head p { font-size:0.95rem; line-height:1.85; color:rgba(255,255,255,0.5); }
+
+    .nfa-steps {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:2px; background:rgba(255,255,255,0.06);
+    }
+    .nfa-step {
+      padding:2.8rem 2.2rem; background:var(--k3);
+      position:relative; overflow:hidden; cursor:default;
+      transition:background 0.3s;
+    }
+    .nfa-step::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:var(--o); transform:scaleX(0); transform-origin:left;
+      transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nfa-step:hover { background:#333; }
+    .nfa-step:hover::before { transform:scaleX(1); }
+    .nfa-num {
+      font-family:'Cormorant Garamond',serif; font-size:5rem; font-weight:300;
+      line-height:1; color:rgba(247,148,29,0.2); margin-bottom:1.5rem;
+      transition:color 0.3s;
+    }
+    .nfa-step:hover .nfa-num { color:rgba(247,148,29,0.4); }
+    .nfa-step h3 {
+      font-family:'DM Sans',sans-serif; font-size:0.75rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase; color:var(--w); margin-bottom:0.9rem;
+    }
+    .nfa-step p { font-size:0.85rem; line-height:1.75; color:rgba(255,255,255,0.5); margin-bottom:1.2rem; }
+    .nfa-step ul { list-style:none; display:flex; flex-direction:column; gap:0.45rem; }
+    .nfa-step ul li { font-size:0.8rem; color:rgba(255,255,255,0.35); display:flex; gap:0.5rem; align-items:flex-start; }
+    .nfa-step ul li::before { content:'—'; color:var(--o); flex-shrink:0; }
+
+    /* ════════════════════════════
+       APPROACH DIAGRAM
+    ════════════════════════════ */
+    .cc-diagram-wrap {
+      margin: 3.5rem 0;
+      background: var(--k);
+      padding: 3rem 2.8rem;
+    }
+    .cc-diagram {
+      display: grid;
+      grid-template-columns: 1fr 72px 1.2fr 72px 1fr;
+      align-items: stretch;
+      gap: 0;
+    }
+    .cc-panel {
+      background: var(--k3);
+      padding: 2.8rem 2rem;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.3s, border-color 0.3s;
+      cursor: default;
+    }
+    .cc-panel:hover { background: var(--k2); border-color: rgba(247,148,29,0.2); }
+    .cc-panel-icon { color: var(--o); flex-shrink: 0; }
+    .cc-panel-icon svg { width: 40px; height: 40px; }
+    .cc-panel h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600; letter-spacing: 0.01em;
+      color: var(--w);
+    }
+    .cc-panel p {
+      font-size: 0.95rem; line-height: 1.75;
+      color: rgba(255,255,255,0.52); flex: 1;
+    }
+    .cc-panel-btn {
+      margin-top: 1.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer; border: none;
+      padding: 1rem 1.6rem;
+      background: var(--o);
+      color: var(--k);
+      display: flex; align-items: center; justify-content: center; gap: 0.55rem;
+      transition: background 0.28s cubic-bezier(0.16,1,0.3,1);
+      width: 100%;
+      position: relative; overflow: hidden;
+    }
+    .cc-panel-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--o2);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cc-panel-btn:hover::before { transform: scaleX(1); }
+    .cc-panel-btn span, .cc-panel-btn .btn-chev { position: relative; z-index: 1; }
+    .cc-panel-btn .btn-chev {
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      flex-shrink: 0;
+    }
+    .cc-panel-btn.active { background: var(--o2); }
+    .cc-panel-btn.active .btn-chev { transform: rotate(180deg); }
+    .approach-content { margin-top: 2rem; }
+    @keyframes panelReveal {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:none; }
+    }
+    .cc-arrow {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; align-self: center;
+    }
+    .cc-arrow svg { width: 56px; height: 36px; }
+    .cc-arrow-l svg { transform: scaleX(-1); }
+    .cc-centre {
+      background: #1A0F04;
+      border: 2px solid var(--o);
+      padding: 1.8rem 2rem;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 1rem;
+      position: relative;
+      align-self: center;
+    }
+    .cc-centre-logo { height: 52px; display: block; opacity: 0.95; }
+    .cc-centre-divider {
+      width: 32px; height: 2px; background: var(--o); flex-shrink: 0;
+    }
+    .cc-centre p {
+      font-size: 0.96rem; line-height: 1.8;
+      color: rgba(255,255,255,0.58);
+      font-style: italic;
+    }
+
+    @media (max-width: 860px) {
+      .cc-diagram {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 48px auto 48px auto;
+      }
+      .cc-arrow { transform: rotate(90deg); }
+      .cc-arrow-l { transform: rotate(90deg); }
+      .cc-diagram-wrap { padding: 2rem 1.5rem; }
+    }
+
+    /* ════════════════════════════
+       MECHANISMS
+    ════════════════════════════ */
+    #mechanisms { padding:8rem 0; background:var(--w); }
+    .mech-head {
+      display:grid; grid-template-columns:2fr 1.2fr;
+      gap:6rem; align-items:start; margin-bottom:4rem;
+    }
+    .mech-head h2 { color:var(--k); margin-bottom:0; }
+    .mech-head-desc { padding-top:4.5rem; }
+    .mech-head-desc p { font-size:0.96rem; line-height:1.85; color:#555; }
+
+    .mech-grid {
+      display:grid; grid-template-columns:repeat(5,1fr);
+      border-top:1px solid var(--g2);
+      border-bottom:3px solid var(--o);
+    }
+    .mech-card {
+      padding:2rem 1.8rem;
+      border-right:1px solid var(--g2);
+      cursor:default;
+      transition:background 0.25s;
+      position:relative;
+    }
+    .mech-card:last-child { border-right:none; }
+    .mech-card::after {
+      content:''; position:absolute; bottom:-3px; left:0; right:0; height:3px;
+      background:var(--o); transform:scaleX(0); transform-origin:left;
+      transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .mech-card:hover { background:var(--g1); }
+    .mech-card:hover::after { transform:scaleX(1); }
+    .mech-type {
+      font-size:0.62rem; font-weight:700;
+      letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--g3); display:block; margin-bottom:0.7rem;
+    }
+    .mech-action {
+      font-family:'DM Sans',sans-serif;
+      font-size:1.55rem; font-weight:700;
+      line-height:1.1; color:var(--k);
+      display:block; margin-bottom:0.5rem;
+    }
+    .mech-example {
+      font-size:0.82rem; line-height:1.6;
+      color:var(--o);
+    }
+    @media (max-width:860px) {
+      .mech-head { grid-template-columns:1fr; gap:2rem; }
+      .mech-grid { grid-template-columns:1fr 1fr; border-bottom:none; }
+      .mech-card { border-bottom:1px solid var(--g2); }
+    }
+    @media (max-width:480px) {
+      .mech-grid { grid-template-columns:1fr; }
+    }
+
+    /* ════════════════════════════
+       CASE STUDIES / MAP
+    ════════════════════════════ */
+    #case { padding:8rem 0; background:var(--k); }
+    .case-intro {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:6rem; align-items:end; margin-bottom:4rem;
+    }
+    .case-intro h2 { color:var(--w); margin-bottom:0; }
+    .case-intro p {
+      font-size:0.96rem; line-height:1.9;
+      color:rgba(255,255,255,0.5);
+    }
+    .case-map-wrap {
+      position:relative; width:100%;
+      border:1px solid rgba(255,255,255,0.06);
+      overflow:hidden;
+    }
+    .case-map-wrap img {
+      width:100%; display:block;
+      transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .case-map-wrap:hover img { transform:scale(1.02); }
+
+    /* ════════════════════════════
+       CASE STUDIES GRID
+    ════════════════════════════ */
+    #casestudies { padding:8rem 0; background:var(--g1); }
+    .csg-head { max-width:680px; margin-bottom:3.5rem; }
+    .csg-head h2 { color:var(--k); margin-bottom:1rem; }
+    .csg-head p { font-size:0.96rem; line-height:1.85; color:#555; }
+
+    .csg-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:3px;
+    }
+    .csg-card {
+      position:relative; aspect-ratio:4/3; overflow:hidden; cursor:pointer;
+    }
+    .csg-card img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      filter:brightness(0.72);
+      transition:transform 0.65s cubic-bezier(0.16,1,0.3,1), filter 0.4s;
+    }
+    .csg-card:hover img { transform:scale(1.07); filter:brightness(0.5); }
+    .csg-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.05) 60%);
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:1.8rem 1.8rem;
+    }
+    .csg-region {
+      font-size:0.58rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--o); display:block; margin-bottom:0.4rem;
+    }
+    .csg-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.3rem; font-weight:600; color:var(--w); line-height:1.2;
+    }
+    .csg-cta {
+      font-size:0.62rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase;
+      color:var(--o); display:block; margin-top:0.6rem;
+      opacity:0; transform:translateY(6px);
+      transition:opacity 0.3s, transform 0.3s;
+    }
+    .csg-card:hover .csg-cta { opacity:1; transform:translateY(0); }
+
+    /* Modal */
+    .cs-modal {
+      position:fixed; inset:0; z-index:1500;
+      display:none; align-items:center; justify-content:center;
+      padding:2rem;
+    }
+    .cs-modal.open { display:flex; }
+    .cs-modal-backdrop {
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0.78);
+    }
+    .cs-modal-box {
+      position:relative; z-index:1;
+      background:var(--w);
+      max-width:780px; width:100%; max-height:88vh;
+      overflow-y:auto;
+      animation:modalIn 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    @keyframes modalIn {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:none; }
+    }
+    .cs-modal-img {
+      width:100%; aspect-ratio:16/7; object-fit:cover; display:block;
+    }
+    .cs-modal-body { padding:2.8rem 3rem 3rem; }
+    .cs-modal-region {
+      font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--o); display:block; margin-bottom:0.8rem;
+    }
+    .cs-modal-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(1.6rem,2.5vw,2.2rem); font-weight:600;
+      color:var(--k); line-height:1.15; margin-bottom:2rem;
+    }
+    .cs-modal-points {
+      list-style:none; display:flex; flex-direction:column; gap:1.1rem;
+    }
+    .cs-modal-points li {
+      font-size:0.92rem; line-height:1.8; color:#444;
+      padding-left:1.4rem; position:relative;
+    }
+    .cs-modal-points li::before { content:'—'; position:absolute; left:0; color:var(--o); }
+    .cs-modal-close {
+      position:absolute; top:1rem; right:1rem;
+      width:36px; height:36px; background:var(--k); color:var(--w);
+      border:none; cursor:pointer; font-size:1.1rem; line-height:1;
+      display:flex; align-items:center; justify-content:center;
+      transition:background 0.2s; z-index:2;
+    }
+    .cs-modal-close:hover { background:var(--o); color:var(--k); }
+
+    /* ════════════════════════════
+       TEAM
+    ════════════════════════════ */
+    #team { padding:8rem 0; background:var(--k); }
+    /* ════════════════════════════
+       PARTNERS TICKER
+    ════════════════════════════ */
+    #partners {
+      padding: 3rem 0;
+      background: var(--g1);
+      border-top: 1px solid var(--g2);
+      border-bottom: 1px solid var(--g2);
+      overflow: hidden;
+    }
+    .ticker-label {
+      text-align: center;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--g3); margin-bottom: 1.6rem;
+    }
+    .ticker-track { position: relative; overflow: hidden; }
+    .ticker-track::before,
+    .ticker-track::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+    }
+    .ticker-track::before { left: 0; background: linear-gradient(to right, var(--g1), transparent); }
+    .ticker-track::after  { right: 0; background: linear-gradient(to left, var(--g1), transparent); }
+    .ticker-inner {
+      display: flex; gap: 0; width: max-content;
+      animation: ticker 120s linear infinite;
+    }
+    .ticker-inner:hover { animation-play-state: paused; }
+    .ticker-set { display: flex; align-items: center; gap: 0; }
+    .ticker-item {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--k3);
+      white-space: nowrap;
+      padding: 0 2.4rem;
+      transition: color 0.2s;
+    }
+    .ticker-item:hover { color: var(--o); }
+    .ticker-sep {
+      color: var(--o);
+      font-size: 0.55rem;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    #team h2 { color:var(--w); margin-bottom:0.8rem; }
+    .team-sub { font-size:0.95rem; color:rgba(255,255,255,0.45); max-width:620px; line-height:1.75; margin-bottom:4rem; }
+
+    .team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; }
+    .team-card { position:relative; overflow:hidden; aspect-ratio:3/4; cursor:pointer; }
+    .team-card img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      filter:grayscale(40%) brightness(0.75);
+      transition:filter 0.5s, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .team-card:hover img { filter:grayscale(0%) brightness(0.85); transform:scale(1.04); }
+    .team-overlay {
+      position:absolute; bottom:0; left:0; right:0;
+      padding:2rem 1.8rem;
+      background:linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
+      transform:translateY(4px); transition:transform 0.35s;
+    }
+    .team-card:hover .team-overlay { transform:none; }
+    .team-name { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--o); }
+    .team-role { font-size:0.78rem; color:rgba(255,255,255,0.55); margin-top:0.2rem; }
+    .team-bio-btn {
+      margin-top:0.8rem; display:inline-flex; align-items:center; gap:0.45rem;
+      font-family:'DM Sans',sans-serif; font-size:0.72rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase;
+      background:var(--o); color:var(--k); border:none; cursor:pointer;
+      padding:0.55rem 1.2rem;
+      opacity:0; transform:translateY(6px);
+      transition:opacity 0.35s, transform 0.35s, background 0.2s;
+    }
+    .team-card:hover .team-bio-btn { opacity:1; transform:translateY(0); }
+    .team-bio-btn:hover { background:var(--o2); }
+
+    /* Team Bio Modal */
+    .bio-modal { position:fixed; inset:0; z-index:1500; display:none; align-items:center; justify-content:center; padding:2rem; }
+    .bio-modal.open { display:flex; }
+    .bio-modal-backdrop { position:absolute; inset:0; background:rgba(0,0,0,0.78); }
+    .bio-modal-box {
+      position:relative; z-index:1; background:var(--w);
+      max-width:720px; width:100%;
+      display:grid; grid-template-columns:260px 1fr;
+      animation:modalIn 0.4s cubic-bezier(0.16,1,0.3,1);
+      max-height:90vh; overflow:hidden;
+    }
+    .bio-modal-img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .bio-modal-body { padding:2.8rem 2.4rem; overflow-y:auto; }
+    .bio-modal-name { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:600; color:var(--k); line-height:1.1; }
+    .bio-modal-role { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--o); margin:0.5rem 0 1.4rem; }
+    .bio-modal-text { font-size:0.9rem; line-height:1.85; color:#444; }
+    .bio-modal-close {
+      position:absolute; top:1rem; right:1rem; z-index:2;
+      width:32px; height:32px; background:var(--k); color:var(--w); border:none;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; transition:background 0.2s;
+    }
+    .bio-modal-close:hover { background:var(--o); color:var(--k); }
+    @media(max-width:600px) { .bio-modal-box { grid-template-columns:1fr; } .bio-modal-img { height:260px; } }
+
+    /* ════════════════════════════
+       CONTACT
+    ════════════════════════════ */
+    #contact { padding:8rem 0; background:var(--k2); }
+    .contact-g { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
+    .contact-copy .eyebrow { margin-bottom:1.2rem; }
+    .contact-copy h2 { color:var(--w); margin-bottom:1.5rem; }
+    .contact-copy h2 em { font-style:italic; color:var(--o); }
+    .contact-copy p { font-size:0.95rem; line-height:1.85; color:rgba(255,255,255,0.5); margin-bottom:2.5rem; }
+
+    .contact-details { display:flex; flex-direction:column; gap:1rem; }
+    .cd {
+      display:flex; align-items:center; gap:1rem;
+      font-size:0.88rem; color:rgba(255,255,255,0.55);
+    }
+    .cd-dot { width:6px; height:6px; background:var(--o); border-radius:50%; flex-shrink:0; }
+
+    /* Form */
+    .fg { margin-bottom:1.6rem; }
+    .fg label {
+      font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+      color:rgba(255,255,255,0.3); display:block; margin-bottom:0.5rem;
+    }
+    .fg label span { font-weight:400; color:rgba(255,255,255,0.18); }
+    .fi {
+      width:100%; background:rgba(255,255,255,0.04);
+      border:none; border-bottom:1px solid rgba(255,255,255,0.12);
+      padding:0.9rem 0; color:var(--w);
+      font-family:'DM Sans',sans-serif; font-size:0.95rem; outline:none;
+      transition:border-color 0.25s;
+    }
+    .fi::placeholder { color:rgba(255,255,255,0.2); }
+    .fi:focus { border-bottom-color:var(--o); }
+    .fi option { background:var(--k2); }
+    .fg-row { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .f-submit {
+      width:100%; padding:1.1rem; margin-top:0.5rem;
+      font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:700;
+      letter-spacing:0.14em; text-transform:uppercase;
+      background:var(--o); color:var(--k); border:none; cursor:pointer;
+      transition:background 0.25s;
+    }
+    .f-submit:hover { background:var(--o2); }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    footer { background:#080808; padding:5rem 0 2.5rem; border-top:1px solid rgba(255,255,255,0.05); }
+    .foot-g {
+      display:grid; grid-template-columns:2.5fr repeat(3,1fr); gap:3.5rem;
+      padding-bottom:3.5rem; border-bottom:1px solid rgba(255,255,255,0.06); margin-bottom:2rem;
+    }
+    .foot-brand img { height:24px; display:block; margin-bottom:1.2rem; }
+    .foot-brand p { font-size:0.85rem; color:rgba(255,255,255,0.25); line-height:1.75; }
+    .foot-col-head { font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.18); display:block; margin-bottom:1.2rem; }
+    .foot-links { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
+    .foot-links a { font-size:0.83rem; color:rgba(255,255,255,0.38); text-decoration:none; transition:color 0.2s; }
+    .foot-links a:hover { color:var(--o); }
+    .foot-bottom { display:flex; justify-content:space-between; align-items:center; }
+    .foot-copy { font-size:0.72rem; color:rgba(255,255,255,0.15); }
+    .foot-legal { display:flex; gap:1.5rem; }
+    .foot-legal a { font-size:0.72rem; color:rgba(255,255,255,0.15); text-decoration:none; transition:color 0.2s; }
+    .foot-legal a:hover { color:var(--o); }
+
+    /* ════════════════════════════
+       RESPONSIVE
+    ════════════════════════════ */
+    @media (max-width:1024px) {
+      .hero-body { grid-template-columns:1fr; }
+      .hero-img-panel { display:none; }
+      .about-g { grid-template-columns:1fr; gap:3rem; }
+      .mission-g { grid-template-columns:1fr; gap:4rem; }
+      .case-intro { grid-template-columns:1fr; gap:2.5rem; }
+      .contact-g { grid-template-columns:1fr; gap:4rem; }
+      .nfa-steps { grid-template-columns:1fr 1fr; }
+      .nfa-step { border-bottom:none; }
+      .nfa-step:last-child { border-right:none; }
+      .mech-grid { gap:2px; }
+      .csg-grid { grid-template-columns:1fr 1fr; }
+      .team-grid { grid-template-columns:1fr 1fr; }
+      .foot-g { grid-template-columns:1fr 1fr; gap:2.5rem; }
+    }
+    @media (max-width:680px) {
+      .nav-links { display:none; }
+      .nav-right .btn { display:none; }
+      .ham { display:flex; }
+      .hero-bar { grid-template-columns:1fr; }
+      .hero-bar-stat { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+      .hero-btns { flex-direction:column; align-items:flex-start; gap:0.8rem; }
+      .hero-btns .btn { width:100%; justify-content:center; }
+      .stats-grid { grid-template-columns:1fr 1fr; }
+      .stat-cell:nth-child(2n) { border-right:1px solid rgba(255,255,255,0.08); }
+      .tab-panel.active { grid-template-columns:1fr; }
+      .nfa-steps { grid-template-columns:1fr; }
+      .csg-grid { grid-template-columns:1fr; }
+      .cs-modal-box { flex-direction:column; }
+      .cs-modal-img { width:100%; height:220px; object-fit:cover; }
+      .cs-modal-body { padding:1.8rem 1.6rem 2rem; }
+      .team-grid { grid-template-columns:1fr 1fr; }
+      .services-intro-body { grid-template-columns:1fr; }
+      .fg-row { grid-template-columns:1fr; gap:0; }
+      .foot-g { grid-template-columns:1fr; gap:2rem; }
+      .foot-bottom { flex-direction:column; gap:0.8rem; text-align:center; }
+      .mech-head-desc { padding-top:0; }
+      .about-img { aspect-ratio:4/3; }
+      #nfa, #mechanisms, #casestudies, #case, #team, #contact, #about, #mission, #approach { padding:5rem 0; }
+      .wrap { padding:0 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── SPLASH INTRO ─────────────────────── -->
+  <div id="splash">
+    <img class="splash-logo" id="splash-logo"
+      src="Brand_assets/CC_Logo_Master WO.png"
+      alt="Conservation Capital" />
+  </div>
+
+  <!-- ── NAV ──────────────────────────────── -->
+  <nav id="nav">
+    <div class="nav-in">
+      <a href="#hero">
+        <img src="Brand_assets/CC_Logo_Master WO.png" alt="Conservation Capital" style="height:28px;display:block;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#team">Team</a></li>
+        <li><a href="#nfa">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#contact" class="btn btn-bk" style="padding:0.6rem 1.4rem;font-size:0.75rem;">Get in Touch</a>
+      </div>
+      <div class="ham" id="ham" onclick="toggleMob()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mob-menu" id="mob-menu">
+    <a href="#about" onclick="closeMob()">About</a>
+    <a href="#nfa" onclick="closeMob()">Services</a>
+    <a href="#casestudies" onclick="closeMob()">Case Studies</a>
+    <a href="#team" onclick="closeMob()">Team</a>
+    <a href="#contact" onclick="closeMob()">Contact</a>
+  </div>
+
+  <!-- ── HERO ─────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg">
+      <img src="Brand_assets/Brand_asset/hero.jpg" alt="African savanna — Conservation Capital" />
+    </div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Nature Finance Advisory</span>
+      <h1>Connecting Capital to Conservation for Over 20 Years</h1>
+      <p class="hero-sub">We advise conservation organisations and investors on how to attract and deploy capital for nature, turning ambition into action.</p>
+      <div class="hero-btns">
+        <a href="#approach" class="btn btn-o" style="padding:1rem 2.2rem;"><span>Our Approach</span><svg class="arr" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#casestudies" class="btn btn-bk" style="padding:1rem 2.2rem;"><span>Case Studies</span><svg class="arr" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+    <a href="#about" class="hero-scroll">
+      <span class="hero-scroll-txt">Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </a>
+    <div class="hero-bar">
+      <div class="hero-bar-stat">
+        <span class="hero-bar-num">20+</span>
+        <span class="hero-bar-lbl">Years in Nature Finance</span>
+      </div>
+      <div class="hero-bar-stat">
+        <span class="hero-bar-num">$150M+</span>
+        <span class="hero-bar-lbl">Transactions Structured</span>
+      </div>
+      <div class="hero-bar-stat">
+        <span class="hero-bar-num">&gt;250</span>
+        <span class="hero-bar-lbl">Transactions Completed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ────────────────────────────── -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-g">
+        <div class="about-img-wrap rv">
+          <img class="about-img" src="Brand_assets/giza for website.jpg" alt="Wildlife" />
+          <div class="about-caption">
+            <strong>Nature as an Asset Class</strong>
+            <span>Translating conservation value into investable opportunity</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="eyebrow rv d1">About our company</span>
+          <h2 class="rv d2">Bridging Finance<br/>and <em>Nature</em></h2>
+          <p class="rv d3">Conservation Capital is a specialist nature finance consultancy focused on closing the nature finance gap. For over 20 years we have helped conservation organisations access capital and investors find opportunities that deliver both financial returns and nature impact.</p>
+          <p class="rv d4">Our team combines deep financial expertise with on-the-ground conservation experience, giving us a rare ability to operate across both worlds and build successful, progressive nature financing solutions.</p>
+          <p class="rv d4">The barrier to closing the nature finance gap is not a shortage of capital. It is a shortage of credible, investment-ready structures. That is what we build.</p>
+          <a href="#mission" class="btn btn-bk rv d5">Our Mission<svg class="arr" viewBox="0 0 14 14" fill="none" style="margin-left:0.5rem;"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MISSION STATS ─────────────────────── -->
+  <section id="mission">
+    <div class="wrap">
+      <div class="mission-g">
+        <div class="mission-text">
+          <span class="eyebrow rv">Our Mission</span>
+          <h2 class="rv d1">To Close the<br/><em>Nature Finance</em><br/>Gap</h2>
+          <p class="rv d2">The world needs to invest $1.3 trillion per year to halt biodiversity loss. Today, less than $313 billion flows to nature annually, and over 80% of that comes from stretched public budgets.</p>
+          <p class="rv d3">Private capital has the scale to close the gap, but remains largely on the sidelines. <strong>The barrier is not a shortage of capital. It is a shortage of credible, investment-ready structures.</strong></p>
+          <p class="rv d4">Conservation Capital's mission is to design and implement progressive nature financing mechanisms that close this gap — for good.</p>
+          <a href="#approach" class="btn btn-o rv d5" style="padding:1.1rem 2.6rem; font-size:0.82rem; box-shadow:0 8px 28px rgba(247,148,29,0.35); letter-spacing:0.16em;"><span>See How We Do It</span><svg class="arr" viewBox="0 0 14 14" fill="none" style="width:16px;height:16px;"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+        <div class="rv d2">
+          <div class="stats-grid">
+            <div class="stat-cell">
+              <span class="stat-cell-num" data-count="942" data-prefix="$" data-suffix="bn">$0bn</span>
+              <div class="stat-cell-title">Annual nature financing gap</div>
+              <div class="stat-cell-desc">The shortfall between what flows to nature and what is needed</div>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-cell-num" data-count="313" data-prefix="$" data-suffix="bn">$0bn</span>
+              <div class="stat-cell-title">Current annual flows to nature</div>
+              <div class="stat-cell-desc">Over 80% from stretched public budgets</div>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-cell-num" data-count="20" data-prefix="&lt;" data-suffix="%">0%</span>
+              <div class="stat-cell-title">From private capital</div>
+              <div class="stat-cell-desc">Just 20% of existing nature finance comes from the private sector</div>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-cell-num" data-count="30" data-prefix="" data-suffix=":1">0:1</span>
+              <div class="stat-cell-title">Capital misallocated</div>
+              <div class="stat-cell-desc">For every $1 invested in nature, $30 is spent destroying it</div>
+            </div>
+            <div class="stat-source">Source: BloombergNEF Biodiversity Finance Factbook, COP16 Edition (2024)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APPROACH ──────────────────────────── -->
+  <section id="approach">
+    <div class="wrap">
+      <span class="eyebrow rv">Our Approach</span>
+      <h2 class="rv d1">Cutting through the complexity<br/>of nature finance</h2>
+      <p class="rv d2">As early pioneers in nature finance, we have spent over two decades navigating one of the most complex challenges in conservation: bridging the gap between the boardrooms where financing decisions are made and the frontier landscapes where capital must be deployed.</p>
+
+      <!-- ── Approach Diagram ── -->
+      <div class="cc-diagram-wrap rv d3">
+        <div class="cc-diagram">
+
+          <!-- Left: Investors -->
+          <div class="cc-panel">
+            <div class="cc-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/>
+                <line x1="4" y1="10" x2="4" y2="21"/><line x1="8" y1="10" x2="8" y2="21"/>
+                <line x1="12" y1="10" x2="12" y2="21"/><line x1="16" y1="10" x2="16" y2="21"/>
+                <line x1="20" y1="10" x2="20" y2="21"/>
+              </svg>
+            </div>
+            <h3>Investors</h3>
+            <p>Capital seeking commercial returns and nature-positive impact at scale</p>
+            <button class="cc-panel-btn" data-tab="investors">
+              <span>Click Here</span>
+              <svg class="btn-chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 4.5l4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <!-- Arrow → -->
+          <div class="cc-arrow cc-arrow-r">
+            <svg viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 12 H36 V3 L56 18 L36 33 V24 H0 Z" fill="#F7941D"/>
+            </svg>
+          </div>
+
+          <!-- Centre: Conservation Capital -->
+          <div class="cc-centre">
+            <img class="cc-centre-logo" src="Brand_assets/CC_Logo_Master WO.png" alt="Conservation Capital" />
+            <p>Designing and implementing financing mechanisms that connect capital to conservation</p>
+          </div>
+
+          <!-- Arrow ← -->
+          <div class="cc-arrow cc-arrow-l">
+            <svg viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 12 H36 V3 L56 18 L36 33 V24 H0 Z" fill="#F7941D"/>
+            </svg>
+          </div>
+
+          <!-- Right: Conservation Organisations -->
+          <div class="cc-panel">
+            <div class="cc-panel-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20"/>
+                <path d="M12 2a15.3 15.3 0 010 20"/>
+                <path d="M12 2a15.3 15.3 0 000 20"/>
+              </svg>
+            </div>
+            <h3>Conservation Organisations</h3>
+            <p>Nature-positive projects seeking increased and more sustainable funding</p>
+            <button class="cc-panel-btn" data-tab="conservation">
+              <span>Click Here</span>
+              <svg class="btn-chev" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 4.5l4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="approach-content">
+        <div class="tab-panel" id="tab-investors">
+          <div class="prop-card">
+            <h3>Navigate Nature Finance with Confidence</h3>
+            <p>The nature market is complex, fast-moving, and often opaque. We help investors identify, evaluate, and execute on opportunities that generate both financial returns and measurable nature impact.</p>
+            <ul>
+              <li>Biodiversity credit markets and voluntary frameworks</li>
+              <li>Nature equity and land value capture structures</li>
+              <li>Conservation bonds and debt facilities</li>
+              <li>Blended finance and grant catalytic structures</li>
+            </ul>
+          </div>
+          <div class="prop-card">
+            <h3>From Pipeline to Portfolio</h3>
+            <p>We source and structure investment-ready opportunities, manage the transaction process, and embed post-investment monitoring systems that demonstrate real-world ecological outcomes.</p>
+            <ul>
+              <li>Structured market engagement using our extensive network</li>
+              <li>Development of concept notes and full investment cases</li>
+              <li>Detailed financial modelling</li>
+              <li>Proprietary deal pipeline across 50+ countries</li>
+              <li>End-to-end transaction management</li>
+              <li>Ongoing portfolio monitoring and impact reporting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="tab-conservation">
+          <div class="prop-card">
+            <h3>Build Investment-Ready Projects</h3>
+            <p>Most conservation organisations have extraordinary projects but lack the financial structures to attract capital at scale. We bridge that gap, turning conservation ambition into bankable investment propositions.</p>
+            <ul>
+              <li><a href="#nfa" style="color:var(--o);text-decoration:none;border-bottom:1px solid rgba(247,148,29,0.4);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--o)'" onmouseout="this.style.borderColor='rgba(247,148,29,0.4)'">Nature Finance Activation (NFA) Process</a></li>
+              <li>Revenue stream identification and modelling</li>
+              <li>Financing mechanism selection and design</li>
+              <li>Stakeholder and community engagement</li>
+              <li>Investor readiness and market testing</li>
+            </ul>
+          </div>
+          <div class="prop-card">
+            <h3>From Ambition to Executed Investment</h3>
+            <p>We guide you all the way from concept to close, structuring the deal, engaging investors, managing due diligence, and establishing post-close monitoring systems that protect your project's ecological integrity.</p>
+            <ul>
+              <li>Structured investor engagement using our extensive network</li>
+              <li>Development of concept notes and full investment cases</li>
+              <li>Detailed financial modelling and capital stack engineering</li>
+              <li>Investor introduction and negotiation support</li>
+              <li>Legal structure and closing management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NFA PROCESS ───────────────────────── -->
+  <section id="nfa">
+    <div class="wrap">
+      <div class="nfa-head rv">
+        <span class="eyebrow">Our Services</span>
+        <h2>The Nature Finance<br/>Activation Process</h2>
+        <span class="nfa-subtitle">A four-phase pathway from ambition to executed investment</span>
+        <p>Distilled from over 250 transactions, our core offering is the <strong>Nature Finance Activation (NFA) Process</strong>: a rigorous end-to-end framework for identifying, designing, and executing nature finance mechanisms. Developed and refined through more than 250 transactions across over 50 countries over two decades, the NFA transforms conservation ambition into bankable investment opportunities.</p>
+      </div>
+      <div class="nfa-steps">
+        <div class="nfa-step rv">
+          <div class="nfa-num">01</div>
+          <h3>Foundational Assessment</h3>
+          <p>Establishing the foundations for a viable, investable strategy through clarifying goals, assessing the enabling environment, and evaluating counterparty readiness through our proprietary Resilience+ framework.</p>
+          <ul>
+            <li>Financial Needs Assessment</li>
+            <li>Counterparty Capacity Analysis (R+)</li>
+            <li>Macro-Context Evaluation</li>
+          </ul>
+        </div>
+        <div class="nfa-step rv d1">
+          <div class="nfa-num">02</div>
+          <h3>NFM Assessment &amp; Prioritisation</h3>
+          <p>Identifying and selecting the most appropriate nature finance mechanisms for each context using a structured three-filter methodology drawn from our extensive finance mechanism long list.</p>
+          <ul>
+            <li>Critical Dynamics Assessment</li>
+            <li>Counterparty Alignment Filter</li>
+            <li>Prioritised shortlist of Nature Finance Mechanisms</li>
+          </ul>
+        </div>
+        <div class="nfa-step rv d2">
+          <div class="nfa-num">03</div>
+          <h3>NFM Design &amp; Market Testing</h3>
+          <p>Converting the selected mechanism(s) into a fully structured financial product that is legally robust, ecologically integrated, and tested against investor expectations prior to capitalisation.</p>
+          <ul>
+            <li>Concept Note</li>
+            <li>Investor Market Testing</li>
+            <li>Full Investment Proposal</li>
+          </ul>
+        </div>
+        <div class="nfa-step rv d3">
+          <div class="nfa-num">04</div>
+          <h3>Market Execution &amp; Capital Mobilisation</h3>
+          <p>Converting investor interest into committed capital by managing engagement, due diligence, transaction processes, and post-close monitoring.</p>
+          <ul>
+            <li>Investor Engagement</li>
+            <li>Negotiation &amp; Closing</li>
+            <li>Post-Close Monitoring</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MECHANISMS ────────────────────────── -->
+  <section id="mechanisms">
+    <div class="wrap">
+      <div class="mech-head rv">
+        <div>
+          <span class="eyebrow">Our Services</span>
+          <h2>A full spectrum of nature<br/>financing mechanisms</h2>
+        </div>
+        <div class="mech-head-desc">
+          <p>We evaluate the full range of nature-linked financing instruments across five core categories, structuring the optimal combination for each context and counterparty.</p>
+        </div>
+      </div>
+      <div class="mech-grid rv d2">
+        <div class="mech-card">
+          <span class="mech-type">Regulation-Based</span>
+          <span class="mech-action">Compensate</span>
+          <p class="mech-example">e.g. Mandatory Carbon Credits</p>
+        </div>
+        <div class="mech-card">
+          <span class="mech-type">Grant-Based</span>
+          <span class="mech-action">Give</span>
+          <p class="mech-example">e.g. Philanthropic Funding</p>
+        </div>
+        <div class="mech-card">
+          <span class="mech-type">Trade-Based</span>
+          <span class="mech-action">Buy</span>
+          <p class="mech-example">e.g. Biodiversity Credits</p>
+        </div>
+        <div class="mech-card">
+          <span class="mech-type">Debt-Based</span>
+          <span class="mech-action">Lend</span>
+          <p class="mech-example">e.g. Conservation Bonds</p>
+        </div>
+        <div class="mech-card">
+          <span class="mech-type">Equity-Based</span>
+          <span class="mech-action">Invest</span>
+          <p class="mech-example">e.g. Conservation Land Acquisition</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASE STUDIES ─────────────────────── -->
+  <section id="case">
+    <div class="wrap">
+      <div class="case-intro rv">
+        <div>
+          <span class="eyebrow">Where We Work</span>
+          <h2>A global track record across five continents</h2>
+        </div>
+        <p>Conservation Capital has completed projects around the world, developing nature financing mechanisms and nature-based businesses for conservation organisations and financiers across five continents — building unparalleled experience in what actually works on the ground.</p>
+      </div>
+      <div class="case-map-wrap rv d2">
+        <img src="CC case study map.png" alt="Conservation Capital global project map" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASE STUDIES ─────────────────────── -->
+  <section id="casestudies">
+    <div class="wrap">
+      <div class="csg-head rv">
+        <span class="eyebrow">Case Studies</span>
+        <h2>Selected projects</h2>
+        <p>Click any project to read the full case study.</p>
+      </div>
+      <div class="csg-grid">
+
+        <div class="csg-card rv" data-case="wcb">
+          <img src="rhino.jpeg" alt="Wildlife Conservation Bond" />
+          <div class="csg-overlay">
+            <span class="csg-region">South Africa · World Bank</span>
+            <span class="csg-title">Wildlife Conservation Bond (Rhino Bond)</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d1" data-case="olpejeta">
+          <img src="Brand_assets/ol pejeta.png" alt="Ol Pejeta Conservancy" />
+          <div class="csg-overlay">
+            <span class="csg-region">Kenya · East Africa</span>
+            <span class="csg-title">Ol Pejeta Conservancy</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d2" data-case="dongting">
+          <img src="Brand_assets/south donkting lake.webp" alt="South Dongting Lake" />
+          <div class="csg-overlay">
+            <span class="csg-region">Hunan Province · China</span>
+            <span class="csg-title">South Dongting Lake Eco-Compensation Mechanism</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d1" data-case="eden">
+          <img src="eden.jpg" alt="Eden Wildflower Bank" />
+          <div class="csg-overlay">
+            <span class="csg-region">England · United Kingdom</span>
+            <span class="csg-title">Eden Wildflower Bank</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d2" data-case="ngonye">
+          <img src="Brand_assets/Ngoney falls.png" alt="Ngonye Falls" />
+          <div class="csg-overlay">
+            <span class="csg-region">Upper Zambezi · Zambia</span>
+            <span class="csg-title">Ngonye Falls Nature Equity</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d3" data-case="borana">
+          <img src="Brand_assets/borona.png" alt="Borana Conservancy" />
+          <div class="csg-overlay">
+            <span class="csg-region">Laikipia · Kenya</span>
+            <span class="csg-title">Borana Conservancy</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d2" data-case="awc">
+          <img src="Brand_assets/mauritius.jpg" alt="Conservation Bonds" />
+          <div class="csg-overlay">
+            <span class="csg-region">Sub-Saharan Africa · Mauritius</span>
+            <span class="csg-title">Conservation Bonds — African Wildlife Capital</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d3" data-case="amboseli">
+          <img src="Brand_assets/Amboseli (Jeremy Goss) - NFM.jpg" alt="Amboseli" />
+          <div class="csg-overlay">
+            <span class="csg-region">Greater Amboseli · Kenya</span>
+            <span class="csg-title">Amboseli Conservancy Investment Plan</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+        <div class="csg-card rv d4" data-case="rec">
+          <img src="Brand_assets/bison.jpg" alt="Rewilding Europe" />
+          <div class="csg-overlay">
+            <span class="csg-region">Europe · Multiple Countries</span>
+            <span class="csg-title">Rewilding Europe Capital</span>
+            <span class="csg-cta">Read Case Study →</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CASE STUDY MODAL ───────────────────── -->
+  <div class="cs-modal" id="cs-modal" role="dialog" aria-modal="true">
+    <div class="cs-modal-backdrop" id="cs-modal-backdrop"></div>
+    <div class="cs-modal-box">
+      <button class="cs-modal-close" id="cs-modal-close" aria-label="Close">✕</button>
+      <img class="cs-modal-img" id="cs-modal-img" src="" alt="" />
+      <div class="cs-modal-body">
+        <span class="cs-modal-region" id="cs-modal-region"></span>
+        <h2 class="cs-modal-title" id="cs-modal-title"></h2>
+        <ul class="cs-modal-points" id="cs-modal-points"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PARTNERS TICKER ───────────────────── -->
+  <section id="partners">
+    <p class="ticker-label">Clients &amp; Partners</p>
+    <div class="ticker-track">
+      <div class="ticker-inner">
+        <!-- Set 1 -->
+        <div class="ticker-set">
+          <span class="ticker-item">The World Bank</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">WWF</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">European Investment Bank</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Conservation Finance Alliance</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Frankfurt Zoological Society</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Wildlife Conservation Society</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Conservation International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rewilding Europe</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Good Investors</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rainforest Trust</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rewilding Britain</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Sustainable Markets Initiative</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Eden Project</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Okavango Capital</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Panthera</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">IUCN</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Royal Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Australian Government DFAT</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Terratai</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Jane Goodall Institute</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">African Wildlife Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">ZSL</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">DEFRA</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">USAID</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">AFD</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Fauna &amp; Flora International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Northern Rangelands Trust</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Big Life Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Platcorp</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Ol Pejeta Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">BIOPAMA</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Carpathia</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">The Nature Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">ILRI</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Conservation Alpha</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Kenya Wildlife Service</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Maasai Mara Wildlife Conservancies</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Solimar International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">GIZ</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Lewa Wildlife Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">FSD Africa</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Space for Giants</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Tompkins Conservation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Loisaba Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Borana Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Asian Development Bank</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">BirdLife International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Save the Elephants</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Mara Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Trees for Life</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Mpala Wildlife Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Maliasili</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">The Biodiversity Consultancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rwanda Development Board</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Biotope</span><span class="ticker-sep">◆</span>
+        </div>
+        <!-- Set 2 — identical, creates seamless loop -->
+        <div class="ticker-set">
+          <span class="ticker-item">The World Bank</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">WWF</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">European Investment Bank</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Conservation Finance Alliance</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Frankfurt Zoological Society</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Wildlife Conservation Society</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Conservation International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rewilding Europe</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Good Investors</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rainforest Trust</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rewilding Britain</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Sustainable Markets Initiative</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Eden Project</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Okavango Capital</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Panthera</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">IUCN</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Royal Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Australian Government DFAT</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Terratai</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Jane Goodall Institute</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">African Wildlife Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">ZSL</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">DEFRA</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">USAID</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">AFD</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Fauna &amp; Flora International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Northern Rangelands Trust</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Big Life Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Platcorp</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Ol Pejeta Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">BIOPAMA</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Carpathia</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">The Nature Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">ILRI</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Conservation Alpha</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Kenya Wildlife Service</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Maasai Mara Wildlife Conservancies</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Solimar International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">GIZ</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Lewa Wildlife Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">FSD Africa</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Space for Giants</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Tompkins Conservation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Loisaba Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Borana Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Asian Development Bank</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">BirdLife International</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Save the Elephants</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Mara Conservancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Trees for Life</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Mpala Wildlife Foundation</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Maliasili</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">The Biodiversity Consultancy</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Rwanda Development Board</span><span class="ticker-sep">◆</span>
+          <span class="ticker-item">Biotope</span><span class="ticker-sep">◆</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TEAM ──────────────────────────────── -->
+  <section id="team">
+    <div class="wrap">
+      <span class="eyebrow rv" style="color:var(--o);">Meet The Team</span>
+      <h2 class="rv d1" style="color:var(--w);margin-bottom:0.8rem;">World-class specialists in<br/>nature finance</h2>
+      <p class="team-sub rv d2">Our team includes pioneers in conservation finance, former investment bankers, ecologists, and entrepreneurs, united by a single mission: closing the nature finance gap.</p>
+      <div class="team-grid">
+        <div class="team-card rv d1" data-member="giles">
+          <img src="Brand_assets/Giles Davies.png" alt="Giles Davies" />
+          <div class="team-overlay">
+            <div class="team-name">Giles Davies</div>
+            <div class="team-role">Founder &amp; Partner</div>
+            <button class="team-bio-btn">Bio <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <div class="team-card rv d2" data-member="amy">
+          <img src="Brand_assets/amy herford.png" alt="Amy Herford" />
+          <div class="team-overlay">
+            <div class="team-name">Amy Herford</div>
+            <div class="team-role">Partner</div>
+            <button class="team-bio-btn">Bio <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <div class="team-card rv d3" data-member="rory">
+          <img src="Brand_assets/rory pic 2.png" alt="Rory MacDonagh" />
+          <div class="team-overlay">
+            <div class="team-name">Rory MacDonagh</div>
+            <div class="team-role">Partner</div>
+            <button class="team-bio-btn">Bio <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <div class="team-card rv d4" data-member="stella">
+          <img src="Brand_assets/Stella rice.png" alt="Stella Rice" />
+          <div class="team-overlay">
+            <div class="team-name">Stella Rice</div>
+            <div class="team-role">Partner</div>
+            <button class="team-bio-btn">Bio <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BIO MODAL ────────────────────────── -->
+  <div class="bio-modal" id="bio-modal">
+    <div class="bio-modal-backdrop" id="bio-modal-backdrop"></div>
+    <div class="bio-modal-box">
+      <img class="bio-modal-img" id="bio-modal-img" src="" alt="" />
+      <div class="bio-modal-body">
+        <div class="bio-modal-name" id="bio-modal-name"></div>
+        <div class="bio-modal-role" id="bio-modal-role"></div>
+        <p class="bio-modal-text" id="bio-modal-text"></p>
+      </div>
+      <button class="bio-modal-close" id="bio-modal-close">&#x2715;</button>
+    </div>
+  </div>
+
+  <!-- ── CONTACT ───────────────────────────── -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-g">
+        <div class="contact-copy">
+          <span class="eyebrow rv">Get In Touch</span>
+          <h2 class="rv d1">Ready to put <em>Capital</em><br/>to work for Nature?</h2>
+          <p class="rv d2">Whether you're a conservation organisation seeking investment or an investor looking for nature-positive opportunities, we'd love to start a conversation.</p>
+          <div class="contact-details rv d3">
+            <div class="cd"><div class="cd-dot"></div>London, United Kingdom &nbsp;·&nbsp; Cape Town, South Africa</div>
+            <div class="cd"><div class="cd-dot"></div>hello@conservationcapital.com</div>
+            <div class="cd"><div class="cd-dot"></div>conservationcapital.com</div>
+          </div>
+        </div>
+        <div class="c-form rv d2">
+          <div class="fg-row">
+            <div class="fg">
+              <label>First Name <span>(required)</span></label>
+              <input class="fi" type="text" placeholder="Jane" />
+            </div>
+            <div class="fg">
+              <label>Last Name <span>(required)</span></label>
+              <input class="fi" type="text" placeholder="Smith" />
+            </div>
+          </div>
+          <div class="fg">
+            <label>Email <span>(required)</span></label>
+            <input class="fi" type="email" placeholder="jane@organisation.com" />
+          </div>
+          <div class="fg">
+            <label>Phone</label>
+            <input class="fi" type="tel" placeholder="+1 (555) 000 0000" />
+          </div>
+          <div class="fg">
+            <label>I am a… <span>(required)</span></label>
+            <select class="fi">
+              <option value="">Select one</option>
+              <option>Conservation Organisation</option>
+              <option>Impact Investor</option>
+              <option>Government / Development Bank</option>
+              <option>Corporate — Nature-Positive Commitments</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Project Details <span>(required)</span></label>
+            <textarea class="fi" rows="4" placeholder="Tell us about your project or what you're looking for…"></textarea>
+          </div>
+          <button class="f-submit">Submit →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────── -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-g">
+        <div class="foot-brand">
+          <img src="Brand_assets/CC_Logo_Master RHT WO.png" alt="Conservation Capital" />
+          <p>Specialist advisory at the intersection of conservation science and investment finance. Closing the nature finance gap for over 20 years.</p>
+        </div>
+        <div>
+          <span class="foot-col-head">Services</span>
+          <ul class="foot-links">
+            <li><a href="#nfa">NFA Process</a></li>
+            <li><a href="#toolkit">Financing Toolkit</a></li>
+            <li><a href="#casestudies">Case Studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="foot-col-head">Company</span>
+          <ul class="foot-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="foot-col-head">Follow</span>
+          <ul class="foot-links">
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Twitter / X</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span class="foot-copy">© 2026 Conservation Capital. All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Splash intro ─────────────────────────
+    (function() {
+      const splash  = document.getElementById('splash');
+      const logo    = document.getElementById('splash-logo');
+      const heroImg = document.querySelector('.hero-bg img');
+
+      // t=0.1s: logo fades in
+      setTimeout(() => logo.classList.add('show'), 100);
+
+      // t=1.6s: logo fades out
+      setTimeout(() => { logo.classList.remove('show'); logo.classList.add('hide'); }, 1600);
+
+      // t=2.0s: hero image begins to appear, splash starts fading
+      setTimeout(() => {
+        if (heroImg) heroImg.classList.add('hero-reveal');
+        splash.classList.add('gone');
+      }, 2000);
+
+      // t=2.9s: remove from layout
+      setTimeout(() => splash.style.display = 'none', 2900);
+    })();
+
+    // ── Scroll reveal ────────────────────────
+    const obs = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+    // ── Animated counters ────────────────────
+    const counterObs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        let start = 0;
+        const dur = 1600;
+        const step = timestamp => {
+          if (!start) start = timestamp;
+          const pct = Math.min((timestamp - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - pct, 3);
+          el.textContent = prefix + Math.round(ease * target) + suffix;
+          if (pct < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+    // ── Approach tabs (toggle) ────────────────
+    document.querySelectorAll('.cc-panel-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const alreadyActive = btn.classList.contains('active');
+        // close everything
+        document.querySelectorAll('.cc-panel-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        // if it wasn't already open, open it
+        if (!alreadyActive) {
+          btn.classList.add('active');
+          const panel = document.getElementById('tab-' + btn.dataset.tab);
+          panel.classList.add('active');
+          setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        }
+      });
+    });
+
+    // ── Case study modal ─────────────────────
+    const caseData = {
+      wcb: {
+        title: 'Wildlife Conservation Bond (Rhino Bond), South Africa',
+        region: 'South Africa · World Bank',
+        img: 'https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=1200&auto=format&fit=crop',
+        points: [
+          'Conservation Capital led the design and development of the Wildlife Conservation Bond (WCB), the world\'s first structured outcomes-based bond focused on a single species.',
+          'Ultimately launched in 2022 by the World Bank after a two-year structuring process, the US$150 million, five-year bond was listed on the Luxembourg Stock Exchange and linked investor returns directly to black rhino population growth.',
+          'Investor principal was placed in a World Bank-managed treasury portfolio, with low-risk returns used to finance rhino conservation at Addo Elephant National Park and the Great Fish River Reserve.',
+          'The Global Environment Facility committed to make a "success payment" at maturity, conditional on verified population growth of at least 4% annually.',
+          'If achieved, investors earned an estimated 3.5% IRR; if not, they recovered only principal from the underlying defeasance structure.',
+          'The design separated capital security from conservation risk: investors faced no downside to principal, while their upside depended entirely on ecological outcomes.',
+          'This structure combined debt finance underwritten by a multilateral with outcome-linked donor payments, de-risked through blended capital support.'
+        ]
+      },
+      olpejeta: {
+        title: 'Ol Pejeta Conservancy, Kenya',
+        region: 'Kenya · East Africa',
+        img: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&auto=format&fit=crop',
+        points: [
+          'Conservation Capital led the US$21 million 2005 acquisition and restructuring of Ol Pejeta Conservancy, a 90,000-acre loss-making cattle ranch in Laikipia, into one of Africa\'s most advanced conservation enterprises.',
+          'At the time it was the largest private sector conservation transaction in Kenya\'s history.',
+          'The model created a hybrid structure: a not-for-profit parent, capitalised through redeemable preference shares, holding 100% of the equity in a for-profit subsidiary that owns the land and manages revenue-generating operations.',
+          'Nearly 1,000 jobs have been created, supported by diversified revenue streams including tourism, cattle, agriculture, residential development, and grants.',
+          'Turnover-linked royalties provided stable cash flows, enabling Ol Pejeta to raise and service commercial debt and remain resilient through crises.',
+          'Conservation outcomes include Kenya\'s largest black rhino sanctuary and the country\'s first IUCN Green List site, with communities integrated through grazing partnerships, jobs, and shared infrastructure.'
+        ]
+      },
+      dongting: {
+        title: 'South Dongting Lake Eco-Compensation Mechanism, China',
+        region: 'Hunan Province · China',
+        img: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1200&auto=format&fit=crop',
+        points: [
+          'Conservation Capital, working with the Asian Development Bank, led the design of an eco-compensation facility for South Dongting Lake in Hunan Province, China\'s second-largest freshwater lake and a critical site on the East Asian–Australasian Flyway.',
+          'Decades of overfishing, unsustainable farming, and industrial pollution has eroded biodiversity, degraded soils, and undermined livelihoods.',
+          'The mechanism was structured to channel US$21 million in conditional payments to farmers and aquaculture producers who adopt verified sustainable production practices, embedded within a wider US$215 million sovereign loan.',
+          'Transfers are outcome-linked, disbursed only against measurable ecologically driven operating enhancements.',
+          'Nature-based enterprises such as reed harvesting and wetland tourism are integrated, diversifying income streams and reducing dependence on subsidies.',
+          'Together, these activities are projected to generate up to US$30 million annually, creating a circular model of ecological and economic recovery — combining sovereign level debt finance with outcome-linked transfers and trade-based revenues.'
+        ]
+      },
+      eden: {
+        title: 'Eden Wildflower Bank, England',
+        region: 'England · United Kingdom',
+        img: 'https://images.unsplash.com/photo-1490750967868-88df5691cc86?w=1200&auto=format&fit=crop',
+        points: [
+          'Conservation Capital, in partnership with the Eden Project and the National Wildflower Centre, designed the Eden Wildflower Bank as one of the first structured biodiversity credit propositions under the UK\'s statutory Biodiversity Net Gain (BNG) framework.',
+          'The initiative is modelled to restore 100 hectares of wildflower-rich habitat annually, generating verified biodiversity credits for sale to property and infrastructure developers seeking to meet their legal offset obligations.',
+          'The financial design combines two revenue streams: biodiversity credits, conservatively modelled at £17,500 per hectare, and annual seed harvesting projected to yield c.£4,000 per hectare, providing recurring income for site management.',
+          'Against projected costs of £5,000 per hectare in start-up and £500,000 in fixed overheads, the programme\'s NPV was first assessed at £19.7 million but could rise to £40 million or more under current pricing trends.',
+          'This proposition leverages trade-based revenues from biodiversity credit sales and seed production, supported by regulatory certainty that de-risks private investment.'
+        ]
+      },
+      ngonye: {
+        title: 'Ngonye Falls Nature Equity, Zambia',
+        region: 'Upper Zambezi · Zambia',
+        img: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&auto=format&fit=crop',
+        points: [
+          'Conservation Capital is working to develop a \'nature equity\' structure linked to the proposed US$660 million, 180 MW run-of-river hydropower project on the Upper Zambezi.',
+          'The scheme will provide clean energy to nearly 1 million people while maintaining a low environmental footprint in one of southern Africa\'s most important natural landscapes.',
+          'CC has designed a tranche within the capital structure in which nature becomes a shareholder — up to US$20 million (c.15% of project equity) reserved for a nature-focused Special Purpose Vehicle (SPV).',
+          'Dividends from this stake will finance watershed conservation and related local community development over a multi-decade period.',
+          'The nature equity tranche will yield double-digit returns to the underlying equity investor, together with more than US$50 million in dividends to the SPV over 25 years — a Money-on-Money multiple of more than 30x on the grant component.',
+          'This structure combined equity finance and blended capital, embedding conservation directly within long-term infrastructure value creation.'
+        ]
+      },
+      borana: {
+        title: 'Borana Conservancy, Kenya',
+        region: 'Laikipia · Kenya',
+        img: 'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=1200&auto=format&fit=crop',
+        points: [
+          'Conservation Capital has worked with Borana Conservancy in Laikipia since inception. Across 30,000 acres, Borana applies a land value capture (LVC) model: ecological investment lifts natural capital, increasing the value of regulated economic rights that are monetised to fund conservation.',
+          'The landowning family retained title but transferred economic rights to a for-profit company bound by strict conservation covenants.',
+          'The company issued nine 99-year sub-leases for premium tourism facilities; four were retained and five sold, raising US$18.5 million to endow a Conservation Trust Fund (CTF).',
+          'Annual shareholder underwriting of c.US$1.4 million is guaranteed and serviced by tourism revenues, providing steady operating finance; the CTF acts as a buffer against shocks.',
+          'Revenues are diversified across tourism, regenerative livestock linked to emerging nature credit markets, small-scale agriculture, and grants.',
+          'The model blends equity, trade-based revenues and blended grant support underpinned by the CTF, with targeted debt funding developments including major solar investments.'
+        ]
+      },
+      awc: {
+        title: 'Conservation Bonds — African Wildlife Capital, Mauritius',
+        region: 'Sub-Saharan Africa · Mauritius',
+        img: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1200&auto=format&fit=crop',
+        points: [
+          'Between 2010 and 2023, Conservation Capital and the African Wildlife Foundation established African Wildlife Capital in Mauritius.',
+          'This vehicle issued two Conservation Bond vehicles (AWC CB1 and CB2), among the first return-seeking debt instruments for nature-based businesses in Sub-Saharan Africa.',
+          'Capitalised with US$7 million of concessional funding behaving like high-risk venture debt, the vehicles financed nine enterprises across Ethiopia, Kenya, Tanzania, Zambia, and Namibia.',
+          'Investments spanned ecotourism, regenerative livestock, and sustainable agriculture, using instruments ranging from revenue-share royalties to convertible debt and fixed-term loans, all with conservation covenants.',
+          'The portfolio achieved an 88.5% capital recovery rate in high-risk jurisdictions, pioneering a replicable model for conservation-aligned lending combining debt finance with blended concessional capital.'
+        ]
+      },
+      amboseli: {
+        title: 'Amboseli Conservancy Investment Plan, Kenya',
+        region: 'Greater Amboseli · Kenya',
+        img: 'https://images.unsplash.com/photo-1547953539-3a2416c21309?w=1200&auto=format&fit=crop',
+        points: [
+          'In partnership with Big Life Foundation, Conservation Capital developed a nature finance strategy for the Greater Amboseli Ecosystem — a landscape where land subdivision, poaching, and land conversion threaten one of Africa\'s most iconic landscapes.',
+          'Big Life has created 150,000+ acres of community conservation areas with plans to expand to 400,000 acres, requiring >US$10 million annually.',
+          'Applying the NFA, CC built detailed financial models to set the long-term funding requirement, identify diversified revenue streams, and prioritise mechanisms to reduce reliance on traditional philanthropy.',
+          'The strategy produced investable roadmaps now moving into implementation, initially focusing on a portfolio of new tourism concessions projected to generate >US$1 million annually while structuring larger-scale mechanisms to meet the remaining gap.'
+        ]
+      },
+      rec: {
+        title: 'Rewilding Europe Capital, Europe',
+        region: 'Europe · Multiple Countries',
+        img: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1200&auto=format&fit=crop',
+        points: [
+          'Co-founded by Conservation Capital, Rewilding Europe Capital is the first dedicated conservation enterprise debt facility in Europe.',
+          'The debt facility was established as a for-profit subsidiary of Rewilding Europe to replace grant dependency with repayable finance.',
+          'Following seed funding from the Dutch Postcode Lottery, CC secured a €6.5 million facility from the European Investment Bank\'s Natural Capital Financing Facility (its first disbursement), blending philanthropic/concessional catalytic capital with institutional finance.',
+          'REC has deployed 25+ loans across EU member states in ecotourism, forestry, fisheries, agriculture, bio-products, and carbon — many tied to rewilding interventions such as peatland restoration and dam removal.',
+          'This combined debt with trade-based enterprise revenues to create Europe\'s first scalable conservation lending model.'
+        ]
+      }
+    };
+
+    const modal      = document.getElementById('cs-modal');
+    const modalImg   = document.getElementById('cs-modal-img');
+    const modalReg   = document.getElementById('cs-modal-region');
+    const modalTitle = document.getElementById('cs-modal-title');
+    const modalPts   = document.getElementById('cs-modal-points');
+
+    function openModal(id, cardImgSrc) {
+      const d = caseData[id]; if (!d) return;
+      modalImg.src = cardImgSrc || d.img; modalImg.alt = d.title;
+      modalReg.textContent = d.region;
+      modalTitle.textContent = d.title;
+      modalPts.innerHTML = d.points.map(p => `<li>${p}</li>`).join('');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.cs-modal-box').scrollTop = 0;
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.csg-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.case, card.querySelector('img').src));
+    });
+    document.getElementById('cs-modal-close').addEventListener('click', closeModal);
+    document.getElementById('cs-modal-backdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeBioModal(); } });
+
+    // ── Team Bio Modal ────────────────────────
+    const teamData = {
+      giles: {
+        name: 'Giles Davies', role: 'Founder & Partner',
+        img: 'Brand_assets/Giles Davies.png',
+        bio: 'Giles is the Founder of Conservation Capital, established in 2004. Over two decades he has overseen >250 transactions across 50+ countries. He has deep expertise in nature-based tourism and is a leader in progressive fee structures and value streams for the benefit of natural and local communities, bringing unparalleled experience in translating conservation assets into sustainable, high-impact ecotourism destinations.'
+      },
+      amy: {
+        name: 'Amy Herford', role: 'Partner',
+        img: 'Brand_assets/amy herford.png',
+        bio: 'Amy is a Partner at Conservation Capital with a background in strategic consulting and green finance. Since joining in 2021 she has led or supported over 20 conservation enterprise and financing projects. Her nature-tourism experience spans a multi-million Euro tourism development programme in Romania, tourism strategy development for clients in Africa, and a feasibility assessment for Saudi Arabia\'s Ministry of Culture.'
+      },
+      rory: {
+        name: 'Rory MacDonagh', role: 'Partner',
+        img: 'Brand_assets/rory pic 2.png',
+        bio: 'Rory is a Partner at Conservation Capital with a focus on tourism development, financial modelling and enterprise strategy. He has designed multiple tourism development strategies and led large-scale procurement processes including an end-to-end tourism strategy and market tendering for one of Kenya\'s largest conservation NGOs. Rory brings a strong background in commercial management and finance, with deep expertise in financial modelling and funding structures for nature-based ventures.'
+      },
+      stella: {
+        name: 'Stella Rice', role: 'Partner',
+        img: 'Brand_assets/Stella rice.png',
+        bio: 'Stella is Managing Director of Conservation Capital, with 15 years of experience leading large-scale, complex projects across the globe. She brings deep expertise in governance, institutional structuring, procurement and project management, and has successfully delivered projects and grant programmes valued at over $600 million. She holds a Master\'s degree in International Development from Cornell University.'
+      }
+    };
+    const bioModal = document.getElementById('bio-modal');
+    function openBioModal(member) {
+      const d = teamData[member]; if (!d) return;
+      document.getElementById('bio-modal-img').src = d.img;
+      document.getElementById('bio-modal-img').alt = d.name;
+      document.getElementById('bio-modal-name').textContent = d.name;
+      document.getElementById('bio-modal-role').textContent = d.role;
+      document.getElementById('bio-modal-text').textContent = d.bio;
+      bioModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBioModal() {
+      bioModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.team-bio-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        openBioModal(btn.closest('.team-card').dataset.member);
+      });
+    });
+    document.getElementById('bio-modal-close').addEventListener('click', closeBioModal);
+    document.getElementById('bio-modal-backdrop').addEventListener('click', closeBioModal);
+
+    // ── Mobile menu ──────────────────────────
+    function toggleMob() {
+      const h = document.getElementById('ham');
+      const m = document.getElementById('mob-menu');
+      h.classList.toggle('open');
+      m.classList.toggle('open');
+    }
+    function closeMob() {
+      document.getElementById('ham').classList.remove('open');
+      document.getElementById('mob-menu').classList.remove('open');
+    }
+
+    // ── Smooth scroll ────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 64, behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
