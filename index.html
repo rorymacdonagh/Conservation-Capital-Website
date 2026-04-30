@@ -1007,16 +1007,22 @@
       .nav-right .btn { display:none; }
       .ham { display:flex; }
 
-      /* Hero */
-      .hero-content { padding:80px 1.5rem 2rem; }
+      /* Hero — shorter so photo doesn't dominate */
+      #hero { height:82svh; min-height:520px; }
+      .hero-content { padding:70px 1.5rem 1.5rem; }
       .hero-eyebrow { font-size:1rem; letter-spacing:0.18em; margin-bottom:1rem; }
-      .hero-bar { grid-template-columns:1fr; }
-      .hero-bar-stat { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
       .hero-btns { flex-direction:column; align-items:stretch; gap:0.8rem; }
       .hero-btns .btn { width:100%; justify-content:center; }
 
+      /* Stats bar — more compact */
+      .hero-bar { grid-template-columns:repeat(3,1fr); }
+      .hero-bar-stat { padding:0.9rem 0.8rem; border-right:1px solid rgba(0,0,0,0.12); border-bottom:none; }
+      .hero-bar-stat:last-child { border-right:none; }
+      .hero-bar-num { font-size:1.3rem; }
+      .hero-bar-lbl { font-size:0.52rem; letter-spacing:0.08em; }
+
       /* About */
-      .about-img { aspect-ratio:4/3; }
+      .about-img { aspect-ratio:16/9; max-height:280px; object-fit:cover; }
       .about-caption { left:0; }
 
       /* Stats */
@@ -1167,10 +1173,6 @@
       <div class="about-g">
         <div class="about-img-wrap rv">
           <img class="about-img" src="Brand_assets/giza for website.jpg" alt="Wildlife" />
-          <div class="about-caption">
-            <strong>Nature as an Asset Class</strong>
-            <span>Translating conservation value into investable opportunity</span>
-          </div>
         </div>
         <div class="about-text">
           <span class="eyebrow rv d1">About our company</span>
