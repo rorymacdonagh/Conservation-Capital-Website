@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Notice | Conservation Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --k:#0a0a0a; --k2:#111; --k3:#1a1a1a;
+      --o:#f7941d; --w:#ffffff; --g1:#f5f3ef;
+    }
+    body { font-family:'DM Sans',sans-serif; background:var(--k); color:var(--w); line-height:1.7; }
+
+    /* Nav */
+    nav {
+      position:sticky; top:0; background:rgba(10,10,10,0.95);
+      backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.06);
+      z-index:100; padding:0 2.5rem; height:64px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    nav img { height:38px; display:block; }
+    nav a.back {
+      font-family:'DM Sans',sans-serif; font-size:0.75rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5);
+      text-decoration:none; transition:color 0.2s;
+    }
+    nav a.back:hover { color:var(--o); }
+
+    /* Layout */
+    .policy-wrap {
+      max-width:780px; margin:0 auto; padding:5rem 2.5rem 7rem;
+    }
+    .policy-label {
+      font-family:'DM Sans',sans-serif; font-size:0.7rem; font-weight:700;
+      letter-spacing:0.22em; text-transform:uppercase; color:var(--o);
+      display:block; margin-bottom:1.2rem;
+    }
+    .policy-wrap h1 {
+      font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,5vw,3.6rem);
+      font-weight:600; color:var(--w); line-height:1.1; margin-bottom:0.6rem;
+    }
+    .policy-date {
+      font-size:0.8rem; color:rgba(255,255,255,0.35); margin-bottom:3.5rem;
+      display:block; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Content */
+    .policy-wrap h2 {
+      font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600;
+      color:var(--w); margin:3rem 0 0.8rem; padding-top:3rem;
+      border-top:1px solid rgba(255,255,255,0.06);
+    }
+    .policy-wrap h2:first-of-type { border-top:none; padding-top:0; }
+    .policy-wrap h3 {
+      font-family:'DM Sans',sans-serif; font-size:0.78rem; font-weight:700;
+      letter-spacing:0.1em; text-transform:uppercase; color:var(--o);
+      margin:1.8rem 0 0.6rem;
+    }
+    .policy-wrap p {
+      font-size:0.93rem; color:rgba(255,255,255,0.6); margin-bottom:1rem; line-height:1.85;
+    }
+    .policy-wrap ul, .policy-wrap ol {
+      margin:0.8rem 0 1rem 1.4rem; display:flex; flex-direction:column; gap:0.5rem;
+    }
+    .policy-wrap li {
+      font-size:0.93rem; color:rgba(255,255,255,0.6); line-height:1.75;
+    }
+    .policy-wrap strong { color:rgba(255,255,255,0.85); font-weight:600; }
+    .policy-wrap a { color:var(--o); text-decoration:none; }
+    .policy-wrap a:hover { text-decoration:underline; }
+
+    /* Table */
+    .policy-table-wrap { overflow-x:auto; margin:1.5rem 0; }
+    table { width:100%; border-collapse:collapse; font-size:0.84rem; }
+    th {
+      font-family:'DM Sans',sans-serif; font-size:0.65rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase;
+      color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.04);
+      padding:0.9rem 1rem; text-align:left; border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    td {
+      padding:0.9rem 1rem; color:rgba(255,255,255,0.6); line-height:1.6;
+      border-bottom:1px solid rgba(255,255,255,0.05); vertical-align:top;
+    }
+    tr:last-child td { border-bottom:none; }
+
+    /* Address block */
+    .address {
+      background:rgba(255,255,255,0.04); border-left:3px solid var(--o);
+      padding:1.4rem 1.8rem; margin:1rem 0; font-size:0.9rem;
+      color:rgba(255,255,255,0.6); line-height:2;
+    }
+
+    /* Footer */
+    footer {
+      background:#080808; border-top:1px solid rgba(255,255,255,0.05);
+      padding:2rem 2.5rem; text-align:center;
+      font-size:0.72rem; color:rgba(255,255,255,0.15);
+    }
+    footer a { color:rgba(255,255,255,0.25); text-decoration:none; margin:0 0.75rem; }
+    footer a:hover { color:var(--o); }
+
+    @media(max-width:680px) {
+      nav { padding:0 1.4rem; }
+      .policy-wrap { padding:3rem 1.4rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+    <img src="Brand_assets/CC_Logo_Master WO.png" alt="Conservation Capital" />
+  </a>
+  <a href="index.html" class="back">← Back to site</a>
+</nav>
+
+<main class="policy-wrap">
+  <span class="policy-label">Legal</span>
+  <h1>Privacy Notice</h1>
+  <span class="policy-date">Last updated: 22 April 2026</span>
+
+  <h2>1. Introduction</h2>
+  <p>This privacy notice explains how Conservation Capital collects and processes personal data when you use our website.</p>
+  <p>Conservation Capital is a specialist nature financing and transaction advisory firm with over 20 years' experience working with organisations to harness innovative business and financial solutions to build resilient natural landscapes and protected areas.</p>
+  <p>This notice provides information concerning the processing activities for Conservation Capital, a company registered in England and Wales in 2010, with Company Number: <strong>07180708</strong>.</p>
+  <p>Conservation Capital is registered as a Data Controller with the United Kingdom's Information Commissioner's Office (ICO), under reference number <strong>ZB391184</strong>.</p>
+  <p>Any reference to "we", "us", or "our" in this privacy notice refers to Conservation Capital.</p>
+  <p>This privacy notice will tell you the following:</p>
+  <ul>
+    <li>Our contact details</li>
+    <li>What information we collect, use, and why</li>
+    <li>Lawful bases and data protection rights</li>
+    <li>Where we get personal information from</li>
+    <li>How long we keep information</li>
+    <li>Who we share information with</li>
+    <li>Sharing information outside the UK</li>
+    <li>How to complain</li>
+  </ul>
+
+  <h2>2. Contact Details</h2>
+  <p>Conservation Capital has appointed its Partner for Operations, Finance and Risk as the Data Protection Lead to oversee compliance with this privacy notice and to inform and advise on our data protection obligations.</p>
+  <p>If you have any questions regarding our privacy notice or wish to make a complaint related to your privacy, please contact us:</p>
+  <div class="address">
+    <strong>Conservation Capital</strong><br/>
+    101 New Cavendish Street<br/>
+    London, W1W 6XH<br/>
+    United Kingdom<br/>
+    Email: <a href="mailto:info@conservation-capital.com">info@conservation-capital.com</a>
+  </div>
+
+  <h2>3. What Information We Collect, Use and Why</h2>
+  <p>When you contact us online or visit our website, we may collect, store and use your personal data. This might include:</p>
+  <ul>
+    <li>Your name</li>
+    <li>Your email address</li>
+    <li>Your phone number</li>
+    <li>Your country of residence</li>
+    <li>Your IP address</li>
+    <li>Details of which web browser version you are using</li>
+    <li>Website user journey information</li>
+    <li>Information about how you use our emails</li>
+    <li>Records of email correspondence between you and Conservation Capital</li>
+    <li>Your preferences as to how we should contact you in the future</li>
+    <li>Records of consent, where appropriate</li>
+    <li>Information shared when you contact us with a query, complaint, or claim</li>
+  </ul>
+  <p>Effective communication and client engagement are essential to delivering high-quality advisory services and achieving meaningful outcomes. Conservation Capital seeks to understand how individuals and organisations interact with the information we provide, so that we can improve our services, refine our communications, and better support informed decision-making across our work.</p>
+
+  <h2>4. Lawful Bases and Data Protection Rights</h2>
+  <p>When we collect or use your personal information through our website, you have the following rights under UK data protection law:</p>
+  <ul>
+    <li><strong>Right of access</strong> — You have the right to ask us for copies of your personal information.</li>
+    <li><strong>Right to rectification</strong> — You have the right to ask us to correct or delete personal information you think is inaccurate or incomplete.</li>
+    <li><strong>Right to erasure</strong> — You have the right to ask us to delete your personal information.</li>
+    <li><strong>Right to restriction of processing</strong> — You have the right to ask us to limit how we can use your personal information.</li>
+    <li><strong>Right to object to processing</strong> — You have the right to object to the processing of your personal data.</li>
+    <li><strong>Right to data portability</strong> — You have the right to ask that we transfer your personal information to another organisation or to you.</li>
+    <li><strong>Right to withdraw consent</strong> — Where we rely on consent as our lawful basis, you have the right to withdraw your consent at any time.</li>
+  </ul>
+  <p>If you make a request, we must respond without undue delay and, in any event, within one month. To make a data protection rights request, please use the contact details in section 2.</p>
+
+  <h3>Lawful bases for service updates and marketing</h3>
+  <ul>
+    <li><strong>Consent</strong> — We rely on your consent when you voluntarily provide personal data, such as submitting a contact form or interacting with us on social media. You may withdraw your consent at any time.</li>
+    <li><strong>Legitimate interests</strong> — We may process personal data where it is necessary for our legitimate interests and does not override your rights. These interests include administering and improving our digital services, monitoring engagement via social media analytics, and customising content to reflect user preferences.</li>
+  </ul>
+
+  <h3>Lawful bases for handling queries, complaints or claims</h3>
+  <ul>
+    <li><strong>Consent</strong> — We have your permission after providing you with all relevant information. You have the right to withdraw your consent at any time.</li>
+    <li><strong>Legal obligation</strong> — We may be required to collect or use your information to comply with the law.</li>
+  </ul>
+
+  <h2>5. Where We Get Personal Information From</h2>
+  <p>We collect personal information from the following sources:</p>
+
+  <h3>Direct interactions</h3>
+  <p>Directly from you via our website contact form, or when you contact us by phone or email.</p>
+
+  <h3>Automated technologies</h3>
+  <p>When you browse our website, we may collect information about how you use it in order to improve our content and services. Conservation Capital uses cookies to understand how people interact with our site. Please read our <a href="cookies.html">Cookies Policy</a> for more information. Note that if you disable or refuse cookies, some parts of our website may become inaccessible or not function properly.</p>
+
+  <h3>Third parties and publicly available sources</h3>
+  <p>We may obtain information through your use of social media platforms such as LinkedIn, depending on your account settings and the privacy policies of those services.</p>
+
+  <h2>6. How Long We Keep Information</h2>
+  <p>We only keep your information for as long as it is reasonable and necessary for the relevant activity, and in line with our Data Retention Policy.</p>
+
+  <div class="policy-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Type of Data</th>
+          <th>Purpose</th>
+          <th>Retention Period</th>
+          <th>Legal Basis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Contact form submissions (name, email, message)</td>
+          <td>To respond to enquiries, correspondence or complaints</td>
+          <td>12 months from the date of last contact</td>
+          <td>Business need; UK GDPR Art. 5(1)(e)</td>
+        </tr>
+        <tr>
+          <td>Email correspondence</td>
+          <td>To build relationships and respond to enquiries or complaints</td>
+          <td>6 years from the date of correspondence</td>
+          <td>Business need; UK GDPR Art. 5(1)(e)</td>
+        </tr>
+        <tr>
+          <td>Analytics data (IP address, browser type, site usage)</td>
+          <td>To analyse website traffic and improve performance</td>
+          <td>26 months for raw data; aggregated data may be retained indefinitely</td>
+          <td>Legitimate interest; UK GDPR Art. 6(1)(f)</td>
+        </tr>
+        <tr>
+          <td>Cookies and tracking data</td>
+          <td>To support site functionality</td>
+          <td>Session cookies: until browser is closed. Persistent cookies: up to 12 months</td>
+          <td>Consent; PECR and UK GDPR</td>
+        </tr>
+        <tr>
+          <td>Data protection and consent records</td>
+          <td>To demonstrate compliance with data protection laws</td>
+          <td>6 years from the date of the request or consent</td>
+          <td>UK GDPR compliance; ICO guidance</td>
+        </tr>
+        <tr>
+          <td>Complaint records</td>
+          <td>To manage and resolve complaints and comply with legal obligations</td>
+          <td>6 years from the date of complaint resolution</td>
+          <td>Best practice in case of dispute</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>At the end of each retention period, we securely delete or anonymise the data, unless we are legally required to retain it for longer.</p>
+
+  <h2>7. Who We Share Information With</h2>
+  <p>We are committed to protecting your data. It will never be sold to external organisations and will only be disclosed to those acting as agents and data processors carrying out work on our behalf. Any such arrangements are subject to a formal data processing agreement to protect the security of your data.</p>
+
+  <div class="policy-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Purpose / Activity</th>
+          <th>Category of Recipient</th>
+          <th>Data Processor</th>
+          <th>Purpose of Processing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Infrastructure and Hosting</td>
+          <td>Cloud and IT service providers</td>
+          <td>Microsoft Azure (Microsoft Corporation)</td>
+          <td>To host secure systems, including email services used to respond to queries and complaints, and to store related messages via Microsoft Outlook as part of Microsoft 365 cloud services.</td>
+        </tr>
+        <tr>
+          <td>Contact Form Processing</td>
+          <td>Form submission services</td>
+          <td>Formspree Inc.</td>
+          <td>To process and transmit contact form submissions securely to Conservation Capital. Data is processed in accordance with Formspree's privacy policy and applicable data protection law.</td>
+        </tr>
+        <tr>
+          <td>Website Security</td>
+          <td>Security and fraud prevention tools</td>
+          <td>To be confirmed</td>
+          <td>To protect our website from misuse, spam, and abuse.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Others we may share personal information with:</p>
+  <ul>
+    <li>Professional or legal advisors</li>
+    <li>Financial or fraud investigation authorities</li>
+    <li>Relevant regulatory authorities</li>
+    <li>External auditors or inspectors</li>
+    <li>Organisations we are legally obliged to share personal information with</li>
+  </ul>
+  <p>All third-party providers process data on our behalf under appropriate data processing agreements and are only permitted to use your personal data for the specific purposes outlined, in accordance with UK GDPR and the Data Protection Act 2018. <strong>We do not sell your data to any third parties.</strong></p>
+
+  <h2>8. Sharing Information Outside the UK</h2>
+  <p>Where necessary, we may transfer personal information outside of the UK. When doing so, we comply with the UK GDPR and ensure appropriate safeguards are in place, including entering into appropriate data transfer agreements or working only with third parties certified under recognised data protection frameworks.</p>
+  <p>You have the right to request details of any safeguards in place by contacting us using the details in section 2. Note that any agreements shared may be redacted to protect commercially sensitive information.</p>
+
+  <h2>9. How to Complain</h2>
+  <p>If you have any concerns about our use of your personal data, please contact us using the details in section 2. If you remain unhappy after raising a complaint with us, you can also complain to the Information Commissioner's Office (ICO):</p>
+  <div class="address">
+    <strong>Information Commissioner's Office</strong><br/>
+    Casework and Advice Division<br/>
+    Wycliffe House, Water Lane<br/>
+    Wilmslow, Cheshire SK9 5AF<br/>
+    Helpline: (+44) 0303 123 1113<br/>
+    Website: <a href="https://www.ico.org.uk" target="_blank" rel="noopener">www.ico.org.uk</a>
+  </div>
+
+  <h2>10. Other Privacy Notices</h2>
+  <p>Conservation Capital is committed to transparency and safeguarding personal data. We maintain dedicated privacy notices depending on your relationship with us. This website privacy notice should be read alongside any supplemental privacy notices you may receive from us. If you have any questions, please contact <a href="mailto:info@conservation-capital.com">info@conservation-capital.com</a>.</p>
+
+  <h2>11. Changes to This Privacy Notice</h2>
+  <p>This privacy notice was last updated on 22 April 2026. We may update this notice from time to time to reflect changes in our activities or legal obligations. When we do, we will update the date above. We encourage you to review this notice periodically.</p>
+</main>
+
+<footer>
+  <p>© 2026 Conservation Capital. All rights reserved. &nbsp;|&nbsp;
+    <a href="privacy.html">Privacy Notice</a>
+    <a href="cookies.html">Cookies Policy</a>
+    <a href="terms.html">Terms of Use</a>
+  </p>
+</footer>
+
+</body>
+</html>
