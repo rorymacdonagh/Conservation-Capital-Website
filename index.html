@@ -1014,16 +1014,12 @@
       .hero-btns { flex-direction:column; align-items:stretch; gap:0.8rem; }
       .hero-btns .btn { width:100%; justify-content:center; }
 
-      /* Stats bar — more compact */
-      .hero-bar { grid-template-columns:repeat(3,1fr); }
-      .hero-bar-stat { padding:0.9rem 0.8rem; border-right:1px solid rgba(0,0,0,0.12); border-bottom:none; }
-      .hero-bar-stat:last-child { border-right:none; }
-      .hero-bar-num { font-size:1.3rem; }
-      .hero-bar-lbl { font-size:0.52rem; letter-spacing:0.08em; }
+      /* Hide stats bar and scroll indicator on mobile */
+      .hero-bar { display:none; }
+      .hero-scroll { display:none; }
 
-      /* About */
-      .about-img { aspect-ratio:16/9; max-height:280px; object-fit:cover; }
-      .about-caption { left:0; }
+      /* About — shift photo up to show leopard */
+      .about-img { aspect-ratio:16/9; max-height:280px; object-fit:cover; object-position:center 10%; }
 
       /* Stats */
       .stats-grid { grid-template-columns:1fr 1fr; }
