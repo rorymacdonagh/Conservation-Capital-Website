@@ -1009,7 +1009,7 @@
 
       /* Hero — shorter so photo doesn't dominate */
       #hero { height:82svh; min-height:520px; }
-      .hero-content { padding:70px 1.5rem 1.5rem; }
+      .hero-content { padding:96px 1.5rem 1.5rem; }
       .hero-eyebrow { font-size:1rem; letter-spacing:0.18em; margin-bottom:1rem; }
       .hero-btns { flex-direction:column; align-items:stretch; gap:0.8rem; }
       .hero-btns .btn { width:100%; justify-content:center; }
@@ -1018,8 +1018,11 @@
       .hero-bar { display:none; }
       .hero-scroll { display:none; }
 
-      /* About — shift photo up to show leopard */
-      .about-img { aspect-ratio:16/9; max-height:280px; object-fit:cover; object-position:center 10%; }
+      /* About — text first, image below (just above Our Mission) */
+      .about-g { display:flex; flex-direction:column; }
+      .about-img-wrap { order:2; }
+      .about-text { order:1; }
+      .about-img { aspect-ratio:4/3; max-height:320px; object-fit:cover; object-position:center 20%; }
 
       /* Stats */
       .stats-grid { grid-template-columns:1fr 1fr; }
@@ -1168,7 +1171,10 @@
     <div class="wrap">
       <div class="about-g">
         <div class="about-img-wrap rv">
-          <img class="about-img" src="Brand_assets/giza for website.jpg" alt="Wildlife" />
+          <picture>
+            <source media="(max-width:680px)" srcset="Brand_assets/leopard small.jpg" />
+            <img class="about-img" src="Brand_assets/giza for website.jpg" alt="Wildlife" />
+          </picture>
         </div>
         <div class="about-text">
           <span class="eyebrow rv d1">About our company</span>
