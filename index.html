@@ -160,7 +160,7 @@
       object-fit: cover; display: block;
       opacity: 0;
       transition: opacity 2.4s ease;
-      animation: heroZoom 24s ease-in-out infinite;
+      animation: heroZoom 32s linear infinite;
     }
     .hero-bg img.hero-reveal { opacity: 1; }
     .hero-bg::after {
@@ -174,10 +174,11 @@
       );
     }
     @keyframes heroZoom {
-      0%   { transform: scale(1)    translateX(0)     translateY(0); }
-      33%  { transform: scale(1.05) translateX(-1.5%) translateY(-0.8%); }
-      66%  { transform: scale(1.08) translateX(1%)    translateY(-1.2%); }
-      100% { transform: scale(1.04) translateX(-0.5%) translateY(0.5%); }
+      0%   { transform: scale(1.04) translateX(0)      translateY(0); }
+      25%  { transform: scale(1.07) translateX(-1.2%)  translateY(-0.7%); }
+      50%  { transform: scale(1.05) translateX(-1.8%)  translateY(-0.3%); }
+      75%  { transform: scale(1.08) translateX(-0.5%)  translateY(0.4%); }
+      100% { transform: scale(1.04) translateX(0)      translateY(0); }
     }
 
     /* Centered content */
